@@ -6,6 +6,5 @@ class RdioProps < ActiveRecord::Migration
     add_column :users, :token, :string
     add_column :users, :secret, :string
     add_column :users, :uid, :string
-    add_column :users, :access_token, :string
   end
 end

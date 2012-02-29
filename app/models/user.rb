@@ -27,7 +27,6 @@ class User < ActiveRecord::Base
        :image => info.image, 
        :token => creds.token,
        :secret => creds.secret,
-       :access_token => extra.access_token,
        :password => Devise.friendly_token[0,20]) 
     end
   end
