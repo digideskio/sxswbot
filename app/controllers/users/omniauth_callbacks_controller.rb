@@ -3,6 +3,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       @user = User.find_for_rdio_oauth(request.env["omniauth.auth"], current_user)
       puts request.env["omniauth.auth"].extra.access_token
       if @user.persisted?
+        @user.get_and_save_rdio_artists(request.env["omniauth.auth"].extra.access_token)
         flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => "Rdio"
         sign_in_and_redirect @user, :event => :authentication
       else

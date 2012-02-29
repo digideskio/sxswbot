@@ -1,6 +1,13 @@
 Sxswbot::Application.routes.draw do
 
+  resources :artists
+
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  devise_scope :user do
+    get "sign_in", :to => "devise/sessions#new"
+    get "sign_out", :to => "devise/sessions#destroy"
+    get "users", :to => 'users#index'
+  end
   
   match 'rdio_artists' => 'home#get_rdio_artists', :as => :rdio_artists
   

@@ -8,7 +8,14 @@
 </head>
 <body>
 	
-<%= link_to "Sign in with Rdio", user_omniauth_authorize_path(:rdio) %>
+<% if current_user %>
+  <% current_user.artists.each do |artist| %>
+    <%= artist.name %>
+    <br />
+  <% end %>
+<% else %>
+  <%= link_to "Sign in with Rdio (and get artists)", user_omniauth_authorize_path(:rdio) %>
+<% end %>
 
 <%= yield %>
 
