@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
     json = access_token.post('http://api.rdio.com/1/', :method => 'getArtistsInCollection').body
     artists = MultiJson.decode(json)['result']
     artists.each do |artist|
-      Artist.create(:name => artist['name'], :key => artist['artistKey'], :user => self)
+      Artist.create(:name => artist['name'], :key => artist['artistKey'], :user => self, :source => 'rdio')
     end
   end
   
